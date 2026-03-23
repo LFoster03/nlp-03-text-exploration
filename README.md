@@ -1,4 +1,6 @@
 # nlp-03-text-exploration
+## Author: Lindsay Foster
+## Date: March 2026
 
 [![Python 3.14+](https://img.shields.io/badge/python-3.14%2B-blue?logo=python)](#)
 [![MIT](https://img.shields.io/badge/license-see%20LICENSE-yellow.svg)](./LICENSE)
@@ -97,7 +99,7 @@ open a machine terminal in your `Repos` folder:
 
 ```shell
 # Replace username with YOUR GitHub username.
-git clone https://github.com/username/nlp-03-text-exploration
+git clone  https://github.com/LFoster03/nlp-03-text-exploration.git
 cd nlp-03-text-exploration
 code .
 ```
@@ -121,7 +123,7 @@ uvx pre-commit run --all-files
 
 # First, run the module
 # IMPORTANT: Close each figure after viewing so execution continues
-uv run python -m nlp.nlp_corpus_explore_case
+uv run python -m nlp.nlp_corpus_explore_foster
 
 # Then, open the notebook.
 # IMPORTANT: Select the kernel and Run All:
