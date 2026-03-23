@@ -1,5 +1,5 @@
 """
-nlp_corpus_explore_case.py - Module 3 Script
+nlp_corpus_explore_foster.py - Module 3 Script
 
 Purpose
 
@@ -21,7 +21,7 @@ Notes
 
 Run from root project folder with:
 
-  uv run python -m nlp.nlp_corpus_explore_case
+  uv run python -m nlp.nlp_corpus_explore_foster
 """
 
 # ============================================================
