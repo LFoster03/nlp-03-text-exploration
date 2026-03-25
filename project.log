@@ -183,3 +183,123 @@
 2026-03-25 12:54:05 | INFO | CI | Pipeline executed successfully!
 2026-03-25 12:54:05 | INFO | CI | ========================
 2026-03-25 12:54:05 | INFO | CI | END main()
+2026-03-25 13:07:21 | INFO | CI | === RUN START ===
+2026-03-25 13:07:21 | INFO | CI | project=MODULE 3 NOTEBOOK: CORPUS EXPLORATION
+2026-03-25 13:07:21 | INFO | CI | repo_dir=nlp-03-text-exploration
+2026-03-25 13:07:21 | INFO | CI | python=3.14.3
+2026-03-25 13:07:21 | INFO | CI | os=Windows 11
+2026-03-25 13:07:21 | INFO | CI | shell=powershell
+2026-03-25 13:07:21 | INFO | CI | cwd=notebooks copy
+2026-03-25 13:07:21 | INFO | CI | github_actions=False
+2026-03-25 13:07:21 | INFO | CI | ROOT_PATH = .
+2026-03-25 13:07:21 | INFO | CI | NOTEBOOKS_PATH = notebooks copy
+2026-03-25 13:07:21 | INFO | CI | SCRIPTS_PATH = scripts
+2026-03-25 13:07:21 | INFO | CI | Logger configured.
+2026-03-25 13:07:22 | INFO | CI | ========================
+2026-03-25 13:07:22 | INFO | CI | Notebook executed successfully!
+2026-03-25 13:07:22 | INFO | CI | ========================
+2026-03-25 13:07:24 | INFO | CI | === RUN START ===
+2026-03-25 13:07:24 | INFO | CI | project=MODULE 3 NOTEBOOK: CORPUS EXPLORATION
+2026-03-25 13:07:24 | INFO | CI | repo_dir=nlp-03-text-exploration
+2026-03-25 13:07:24 | INFO | CI | python=3.14.3
+2026-03-25 13:07:24 | INFO | CI | os=Windows 11
+2026-03-25 13:07:24 | INFO | CI | shell=powershell
+2026-03-25 13:07:24 | INFO | CI | cwd=notebooks copy
+2026-03-25 13:07:24 | INFO | CI | github_actions=False
+2026-03-25 13:07:24 | INFO | CI | ROOT_PATH = .
+2026-03-25 13:07:24 | INFO | CI | NOTEBOOKS_PATH = notebooks copy
+2026-03-25 13:07:24 | INFO | CI | SCRIPTS_PATH = scripts
+2026-03-25 13:07:24 | INFO | CI | Logger configured.
+2026-03-25 13:07:24 | INFO | CI | ========================
+2026-03-25 13:07:24 | INFO | CI | Notebook executed successfully!
+2026-03-25 13:07:24 | INFO | CI | ========================
+2026-03-25 13:12:26 | INFO | CI | === RUN START ===
+2026-03-25 13:12:26 | INFO | CI | project=MODULE 3 NOTEBOOK: CORPUS EXPLORATION
+2026-03-25 13:12:26 | INFO | CI | repo_dir=nlp-03-text-exploration
+2026-03-25 13:12:26 | INFO | CI | python=3.14.3
+2026-03-25 13:12:26 | INFO | CI | os=Windows 11
+2026-03-25 13:12:26 | INFO | CI | shell=powershell
+2026-03-25 13:12:26 | INFO | CI | cwd=notebooks copy
+2026-03-25 13:12:26 | INFO | CI | github_actions=False
+2026-03-25 13:12:26 | INFO | CI | ROOT_PATH = .
+2026-03-25 13:12:26 | INFO | CI | NOTEBOOKS_PATH = notebooks copy
+2026-03-25 13:12:26 | INFO | CI | SCRIPTS_PATH = scripts
+2026-03-25 13:12:26 | INFO | CI | Logger configured.
+2026-03-25 13:12:26 | INFO | CI | ========================
+2026-03-25 13:12:26 | INFO | CI | Notebook executed successfully!
+2026-03-25 13:12:26 | INFO | CI | ========================
+2026-03-25 13:12:58 | INFO | CI | ========================
+2026-03-25 13:12:58 | INFO | CI | Notebook executed successfully!
+2026-03-25 13:12:58 | INFO | CI | ========================
+2026-03-25 13:14:09 | INFO | CI | === RUN START ===
+2026-03-25 13:14:09 | INFO | CI | project=MODULE 3 NOTEBOOK: CORPUS EXPLORATION
+2026-03-25 13:14:09 | INFO | CI | repo_dir=nlp-03-text-exploration
+2026-03-25 13:14:09 | INFO | CI | python=3.14.3
+2026-03-25 13:14:09 | INFO | CI | os=Windows 11
+2026-03-25 13:14:09 | INFO | CI | shell=powershell
+2026-03-25 13:14:09 | INFO | CI | cwd=notebooks copy
+2026-03-25 13:14:09 | INFO | CI | github_actions=False
+2026-03-25 13:14:09 | INFO | CI | ROOT_PATH = .
+2026-03-25 13:14:09 | INFO | CI | NOTEBOOKS_PATH = notebooks copy
+2026-03-25 13:14:09 | INFO | CI | SCRIPTS_PATH = scripts
+2026-03-25 13:14:09 | INFO | CI | Logger configured.
+2026-03-25 13:14:09 | INFO | CI | ========================
+2026-03-25 13:14:09 | INFO | CI | Notebook executed successfully!
+2026-03-25 13:14:09 | INFO | CI | ========================
+2026-03-25 13:16:05 | INFO | CI | === RUN START ===
+2026-03-25 13:16:05 | INFO | CI | project=MODULE 3 NOTEBOOK: CORPUS EXPLORATION
+2026-03-25 13:16:05 | INFO | CI | repo_dir=nlp-03-text-exploration
+2026-03-25 13:16:05 | INFO | CI | python=3.14.3
+2026-03-25 13:16:05 | INFO | CI | os=Windows 11
+2026-03-25 13:16:05 | INFO | CI | shell=powershell
+2026-03-25 13:16:05 | INFO | CI | cwd=notebooks copy
+2026-03-25 13:16:05 | INFO | CI | github_actions=False
+2026-03-25 13:16:05 | INFO | CI | ROOT_PATH = .
+2026-03-25 13:16:05 | INFO | CI | NOTEBOOKS_PATH = notebooks copy
+2026-03-25 13:16:05 | INFO | CI | SCRIPTS_PATH = scripts
+2026-03-25 13:16:05 | INFO | CI | Logger configured.
+2026-03-25 13:16:05 | INFO | CI | ========================
+2026-03-25 13:16:05 | INFO | CI | Notebook executed successfully!
+2026-03-25 13:16:05 | INFO | CI | ========================
+2026-03-25 13:16:44 | INFO | CI | === RUN START ===
+2026-03-25 13:16:44 | INFO | CI | project=MODULE 3 NOTEBOOK: CORPUS EXPLORATION
+2026-03-25 13:16:44 | INFO | CI | repo_dir=nlp-03-text-exploration
+2026-03-25 13:16:44 | INFO | CI | python=3.14.3
+2026-03-25 13:16:44 | INFO | CI | os=Windows 11
+2026-03-25 13:16:44 | INFO | CI | shell=powershell
+2026-03-25 13:16:44 | INFO | CI | cwd=notebooks copy
+2026-03-25 13:16:44 | INFO | CI | github_actions=False
+2026-03-25 13:16:44 | INFO | CI | ROOT_PATH = .
+2026-03-25 13:16:44 | INFO | CI | NOTEBOOKS_PATH = notebooks copy
+2026-03-25 13:16:44 | INFO | CI | SCRIPTS_PATH = scripts
+2026-03-25 13:16:44 | INFO | CI | Logger configured.
+2026-03-25 13:16:45 | INFO | CI | ========================
+2026-03-25 13:16:45 | INFO | CI | Notebook executed successfully!
+2026-03-25 13:16:45 | INFO | CI | ========================
+2026-03-25 13:17:15 | INFO | CI | === RUN START ===
+2026-03-25 13:17:15 | INFO | CI | project=MODULE 3 NOTEBOOK: CORPUS EXPLORATION
+2026-03-25 13:17:15 | INFO | CI | repo_dir=nlp-03-text-exploration
+2026-03-25 13:17:15 | INFO | CI | python=3.14.3
+2026-03-25 13:17:15 | INFO | CI | os=Windows 11
+2026-03-25 13:17:15 | INFO | CI | shell=powershell
+2026-03-25 13:17:15 | INFO | CI | cwd=notebooks copy
+2026-03-25 13:17:15 | INFO | CI | github_actions=False
+2026-03-25 13:17:15 | INFO | CI | ROOT_PATH = .
+2026-03-25 13:17:15 | INFO | CI | NOTEBOOKS_PATH = notebooks copy
+2026-03-25 13:17:15 | INFO | CI | SCRIPTS_PATH = scripts
+2026-03-25 13:17:15 | INFO | CI | Logger configured.
+2026-03-25 13:17:47 | INFO | CI | === RUN START ===
+2026-03-25 13:17:47 | INFO | CI | project=MODULE 3 NOTEBOOK: CORPUS EXPLORATION
+2026-03-25 13:17:47 | INFO | CI | repo_dir=nlp-03-text-exploration
+2026-03-25 13:17:47 | INFO | CI | python=3.14.3
+2026-03-25 13:17:47 | INFO | CI | os=Windows 11
+2026-03-25 13:17:47 | INFO | CI | shell=powershell
+2026-03-25 13:17:47 | INFO | CI | cwd=notebooks copy
+2026-03-25 13:17:47 | INFO | CI | github_actions=False
+2026-03-25 13:17:47 | INFO | CI | ROOT_PATH = .
+2026-03-25 13:17:47 | INFO | CI | NOTEBOOKS_PATH = notebooks copy
+2026-03-25 13:17:47 | INFO | CI | SCRIPTS_PATH = scripts
+2026-03-25 13:17:47 | INFO | CI | Logger configured.
+2026-03-25 13:17:47 | INFO | CI | ========================
+2026-03-25 13:17:47 | INFO | CI | Notebook executed successfully!
+2026-03-25 13:17:47 | INFO | CI | ========================

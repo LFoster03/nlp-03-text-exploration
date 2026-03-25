@@ -221,6 +221,14 @@ The library category emphasized terms such as libraries, books, and find.
 The reading category highlighted words like reading and books.
 The comparison chart of top tokens clearly shows related vocabulary across categories.
 
+## Visualizations
+
+### Top Tokens in Books
+![Books Tokens](docs/images/Books_Tokens.png)
+
+### Top Tokens Comparison Across Categories
+![Books Category Comparison](docs/images/Books_Category_Comparison.png)
+
 </details>
 
 ## Notes
