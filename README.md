@@ -137,6 +137,37 @@ git add -A
 git commit -m "update"
 git push -u origin main
 ```
+## Modification
+### New Visualization: Category Comparison
+
+A new visualization was added to compare the most frequent tokens across all categories in the corpus.
+
+*What Changed*
+
+Added a bar chart showing the top tokens from each category (dog, cat, car, truck)
+
+Combined category and token labels for clearer comparison
+
+Expanded visualization beyond a single category
+
+*Why This Change Was Made*
+
+The original script only visualized one category (dog), which limited the ability to compare vocabulary across categories. This modification allows for a clearer comparison of how language differs between groups.
+
+*What Was Observed*
+
+Each category shows distinct vocabulary patterns
+
+Animal categories (dog, cat) include behavior-related words (runs, sleeps)
+
+Vehicle categories (car, truck) include function-related words (drives, carries)
+
+Some overlap exists, but categories are still clearly separable
+
+*Insights Gained*
+
+This visualization demonstrates how text data naturally clusters by category, even with simple preprocessing. It highlights how different domains use distinct vocabularies, which is useful for tasks like classification, clustering, and topic modeling.
+
 
 </details>
 
