@@ -198,6 +198,28 @@ This demonstrates that preprocessing is critical in text analysis. Small changes
 - Use new corpus.
 A custom corpus was created around the theme of books and libraries, with categories for books, libraries, and reading. Each category represents a different perspective—content, location, and activity—allowing for clear comparison of token usage.
 
+### Corpus Exploration: Libraries & Books
+*Purpose*
+
+This module performs exploratory analysis of a small, controlled text corpus. It demonstrates how structure emerges from token distributions, category comparisons, and co-occurrence patterns before using any machine learning models.
+
+*Corpus Categories*
+**Books** – sentences about authors, readers, and types of books.
+**Library** – sentences about library spaces, resources, and services.
+**Reading** – sentences about reading activities, learning, and knowledge.
+
+*Observations*
+
+Tokens cluster by category (books, library, reading).
+The books category focuses on content like authors and readers.
+The library category emphasizes spaces, resources, and services.
+The reading category highlights learning and activities.
+Each category uses different vocabulary, showing clear topic separation.
+
+The most frequent tokens in books included words like books and readers.
+The library category emphasized terms such as libraries, books, and find.
+The reading category highlighted words like reading and books.
+The comparison chart of top tokens clearly shows related vocabulary across categories.
 
 </details>
 

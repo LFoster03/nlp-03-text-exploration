@@ -358,14 +358,10 @@ print(
     "- The most frequent tokens in 'books' included words like 'books' and 'readers'."
 )
 print(
-    "- The 'library' category emphasized terms such as 'libraries', 'resources', and 'librarians'."
+    "- The 'library' category emphasized terms such as 'libraries', 'books', and 'find'."
 )
-print(
-    "- The 'reading' category highlighted words like 'reading', 'students', and 'knowledge'."
-)
-print(
-    "- The comparison chart showed clear differences in vocabulary across categories."
-)
+print("- The 'reading' category highlighted words like 'reading', 'books', and 'read'.")
+print("- The comparison chart showed differences in vocabulary across categories.")
 
 
 # ============================================================
