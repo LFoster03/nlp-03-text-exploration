@@ -102,40 +102,59 @@ print(f"Corpus contains {len(corpus)} documents.")
 # Section 3. Tokenize and Clean Text
 # ============================================================
 
-# Tokenization splits text into word-like units.
+# Stop words
+STOP_WORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "but",
+    "by",
+    "for",
+    "from",
+    "has",
+    "have",
+    "in",
+    "is",
+    "it",
+    "its",
+    "of",
+    "on",
+    "or",
+    "that",
+    "the",
+    "to",
+    "was",
+    "were",
+    "will",
+    "with",
+}
 
 
-# Define a function to tokenize text by lowercasing, splitting on whitespace,
-# and stripping common punctuation. We also filter out very short tokens (length <= 2).
-# This simple tokenizer is sufficient for our small, controlled corpus.
-# Use the string strip() method to remove punctuation from the beginning and end of each token.
+# Tokenization function (WITH stopword removal)
 def tokenize(text: str) -> list[str]:
     tokens = text.lower().split()
-    return [t.strip(".,:;!?()[]\"'") for t in tokens if len(t) > 2]
+    return [
+        t.strip(".,:;!?()[]\"'") for t in tokens if len(t) > 2 and t not in STOP_WORDS
+    ]
 
 
-# Define a new empty list to hold the token records we will create.
+# Build token records
 records_list: list[dict[str, str]] = []
 
-# Loop through each document, tokenize the text,
-# and create a record for each token with its category and
-# add it to our list of records.
 for doc in corpus:
-    # Call our function to tokenize the text of the current document.
-    tokens = tokenize(doc["text"])
-    # Loop through each token produced by the tokenizer and
-    # create a record that includes the category of the document and the token itself.
-    # Append this record to our list of records.
+    tokens = tokenize(doc["text"])  # ✅ now uses correct function
     for token in tokens:
         records_list.append({"category": doc["category"], "token": token})
 
-# Create a Polars DataFrame from the list of token records for easier analysis.
+# Create DataFrame
 token_df: pl.DataFrame = pl.DataFrame(records_list)
 
-# Show results
 print("Tokenization complete.")
 print(token_df.head(10))
-
 
 # ============================================================
 # Section 4. Compute Global Token Frequencies

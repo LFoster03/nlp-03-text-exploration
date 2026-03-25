@@ -144,11 +144,11 @@ A new visualization was added to compare the most frequent tokens across all cat
 
 *What Changed*
 
-Added a bar chart showing the top tokens from each category (dog, cat, car, truck)
+Added a bar chart showing the top tokens from each category (dog, cat, car, truck).
 
-Combined category and token labels for clearer comparison
+Combined category and token labels for clearer comparison.
 
-Expanded visualization beyond a single category
+Expanded visualization beyond a single category.
 
 *Why This Change Was Made*
 
@@ -156,7 +156,7 @@ The original script only visualized one category (dog), which limited the abilit
 
 *What Was Observed*
 
-Each category shows distinct vocabulary patterns
+Each category shows distinct vocabulary patterns.
 
 Animal categories (dog, cat) include behavior-related words (runs, sleeps)
 
@@ -167,6 +167,30 @@ Some overlap exists, but categories are still clearly separable
 *Insights Gained*
 
 This visualization demonstrates how text data naturally clusters by category, even with simple preprocessing. It highlights how different domains use distinct vocabularies, which is useful for tasks like classification, clustering, and topic modeling.
+
+## Add StopWord Filtering
+
+### Improvement: Stopword Filtering for Better Visualization
+
+After adding the category comparison visualization, it was observed that common words like “the” dominated all categories, making the results less meaningful.
+
+*What Changed*
+
+Added stopword filtering to the tokenization function
+Removed common words such as “the”, “and”, and “in”
+
+*Why This Change Was Made*
+
+Without stopword removal, the most frequent words were not meaningful for analysis. This made it difficult to compare categories effectively.
+
+*What Was Observed*
+
+Before: charts were dominated by common filler words
+After: charts highlight meaningful, domain-specific terms
+
+*Insights Gained*
+
+This demonstrates that preprocessing is critical in text analysis. Small changes in data cleaning can significantly improve the quality and interpretability of results.
 
 
 </details>
