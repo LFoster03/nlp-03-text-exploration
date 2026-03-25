@@ -192,6 +192,12 @@ After: charts highlight meaningful, domain-specific terms
 
 This demonstrates that preprocessing is critical in text analysis. Small changes in data cleaning can significantly improve the quality and interpretability of results.
 
+## Apply The Example To a Different Problem
+
+- Copy the project.
+- Use new corpus.
+A custom corpus was created around the theme of books and libraries, with categories for books, libraries, and reading. Each category represents a different perspective—content, location, and activity—allowing for clear comparison of token usage.
+
 
 </details>
 

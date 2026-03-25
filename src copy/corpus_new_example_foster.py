@@ -1,0 +1,378 @@
+"""
+nlp_corpus_explore_foster.py - Module 3 Script
+
+Purpose
+
+  Perform exploratory analysis of a small, controlled text corpus.
+  Demonstrate how structure emerges from token distributions,
+  category comparisons, and co-occurrence patterns.
+
+Analytical Questions
+
+- What tokens dominate each category?
+- How do categories differ in vocabulary?
+- What words appear in similar contexts?
+- What structure is visible before using any models?
+
+Notes
+
+- This module focuses on exploratory analysis (EDA), not modeling.
+- Results here prepare for later work with pipelines and embeddings.
+
+Run from root project folder with:
+
+  uv run python -m nlp.corpus_new_example_foster
+"""
+
+# ============================================================
+# Section 1. Setup and Imports
+# ============================================================
+
+from collections import defaultdict
+import logging
+from pathlib import Path
+
+from datafun_toolkit.logger import get_logger, log_header, log_path
+import matplotlib.pyplot as plt
+import polars as pl
+
+print("Imports complete.")
+
+
+# ============================================================
+# Configure Logging
+# ============================================================
+
+LOG: logging.Logger = get_logger("CI", level="DEBUG")
+
+ROOT_PATH: Path = Path.cwd()
+NOTEBOOKS_PATH: Path = ROOT_PATH / "notebooks"
+SCRIPTS_PATH: Path = ROOT_PATH / "scripts"
+
+log_header(LOG, "MODULE 3: CORPUS EXPLORATION")
+LOG.info("START script.....")
+
+log_path(LOG, "ROOT_PATH", ROOT_PATH)
+log_path(LOG, "NOTEBOOKS_PATH", NOTEBOOKS_PATH)
+log_path(LOG, "SCRIPTS_PATH", SCRIPTS_PATH)
+
+LOG.info("Logger configured.")
+
+# ============================================================
+# Section 2. Define Corpus (Labeled Text Documents)
+# ============================================================
+
+# A corpus is a collection of documents.
+# Each document includes a category and text.
+
+corpus = [
+    # Books
+    {"category": "books", "text": "Books contain stories and information for readers."},
+    {"category": "books", "text": "Authors write novels, textbooks, and biographies."},
+    {"category": "books", "text": "Readers borrow books and enjoy reading."},
+    {"category": "books", "text": "Libraries store books on shelves for access."},
+    # Libraries
+    {"category": "library", "text": "Libraries provide quiet spaces for studying."},
+    {"category": "library", "text": "Librarians help people find books and resources."},
+    {"category": "library", "text": "Visitors use computers and check out materials."},
+    {"category": "library", "text": "Libraries organize books into categories."},
+    # Reading
+    {"category": "reading", "text": "Reading improves knowledge and vocabulary."},
+    {"category": "reading", "text": "Students read books for school assignments."},
+    {"category": "reading", "text": "People read for fun and relaxation."},
+    {"category": "reading", "text": "Reading helps develop critical thinking skills."},
+]
+
+# Show results
+print(f"Corpus contains {len(corpus)} documents.")
+
+
+# ============================================================
+# Section 3. Tokenize and Clean Text
+# ============================================================
+
+# Stop words
+STOP_WORDS = {
+    "a",
+    "an",
+    "and",
+    "are",
+    "as",
+    "at",
+    "be",
+    "but",
+    "by",
+    "for",
+    "from",
+    "has",
+    "have",
+    "in",
+    "is",
+    "it",
+    "its",
+    "of",
+    "on",
+    "or",
+    "that",
+    "the",
+    "to",
+    "was",
+    "were",
+    "will",
+    "with",
+}
+
+
+# Tokenization function (WITH stopword removal)
+def tokenize(text: str) -> list[str]:
+    tokens = text.lower().split()
+    return [
+        t.strip(".,:;!?()[]\"'") for t in tokens if len(t) > 2 and t not in STOP_WORDS
+    ]
+
+
+# Build token records
+records_list: list[dict[str, str]] = []
+
+for doc in corpus:
+    tokens = tokenize(doc["text"])  # ✅ now uses correct function
+    for token in tokens:
+        records_list.append({"category": doc["category"], "token": token})
+
+# Create DataFrame
+token_df: pl.DataFrame = pl.DataFrame(records_list)
+
+print("Tokenization complete.")
+print(token_df.head(10))
+
+# ============================================================
+# Section 4. Compute Global Token Frequencies
+# ============================================================
+
+# Frequency distribution = how often each token appears.
+
+# Create a DataFrame that groups the tokens by their text and
+# counts how many times each token appears across the entire corpus.
+global_freq_df: pl.DataFrame = (
+    token_df.group_by("token").len().sort("len", descending=True)
+)
+
+# Show results
+print("Top global tokens:")
+print(global_freq_df.head(10))
+
+
+# ============================================================
+# Section 5. Compute Token Frequencies by Category
+# ============================================================
+
+# Compare token usage across categories.
+
+# Create a new DataFrame that groups the tokens by both their category and text,
+# counts how many times each token appears within each category,
+# and sorts the results first by category and then by frequency in descending order.
+# This shows which tokens are most common within each category.
+category_freq_df: pl.DataFrame = (
+    token_df.group_by(["category", "token"])
+    .len()
+    .sort(["category", "len"], descending=True)
+)
+
+# Show results
+print("Top tokens by category:")
+print(category_freq_df.head(12))
+
+
+# ============================================================
+# Section 6. Identify Top Tokens per Category
+# ============================================================
+
+# Show top tokens per category.
+
+
+# Define a new empty dictionary to store the top tokens for each category.
+top_per_category_dict: dict[str, list[str]] = {}
+
+# Loop through each unique category in the token DataFrame,
+# filter the category frequency DataFrame to get the top 5 tokens for that category,
+# and store the list of top tokens in the dictionary.
+# Also, print the top tokens for each category.
+for category in token_df["category"].unique().to_list():
+    subset_df = category_freq_df.filter(pl.col("category") == category).head(5)
+    top_tokens_list = subset_df["token"].to_list()
+    top_per_category_dict[category] = top_tokens_list
+
+    # Show results for this category
+    print(f"{category.upper()} top tokens: {top_tokens_list}")
+
+
+# ============================================================
+# Section 7. Analyze Co-occurrence (Context Windows)
+# ============================================================
+
+# Co-occurrence examines which tokens appear near each other.
+
+# Define how many tokens on each side of a target token we include as context.
+# A window size of 2 means:
+#   - up to 2 tokens before the target token
+#   - up to 2 tokens after the target token
+# The target token itself is not included in its context list.
+WINDOW_SIZE: int = 2
+
+# Define a new empty dictionary to store the co-occurrence information.
+# The keys will be target tokens,
+# and the values will be lists of context tokens that appear near the target token.
+co_occurrence_dict: dict[str, list[str]] = defaultdict(list)
+
+# Loop through each document in the corpus, tokenize the text,
+# and for each token, determine its context tokens based on the defined window size.
+for doc in corpus:
+    tokens = tokenize(doc["text"])
+    for i, token in enumerate(tokens):
+        start = max(0, i - WINDOW_SIZE)
+        end = min(len(tokens), i + WINDOW_SIZE + 1)
+        context = tokens[start:end]
+        for ctx in context:
+            if ctx != token:
+                co_occurrence_dict[token].append(ctx)
+
+# Show results
+for target in ["books", "library", "reading"]:
+    print(f"\nContext for '{target}':")
+    print(co_occurrence_dict[target][:10])
+
+
+# ============================================================
+# Section 8. Create Bigrams (Local Word Pairs) and Compute Frequencies
+# ============================================================
+
+# Bigrams combine each word with the next word in the text.
+# This helps us capture local structure: how words are used together,
+# not just which words appear individually.
+
+# Bigrams capture pairs of consecutive tokens.
+
+# Define a new empty list to hold the bigram tuples we will create.
+bigrams_list: list[tuple[str, str]] = []
+
+# Loop through each document in the corpus, tokenize the text,
+# and create bigrams by pairing each token with the next token in the list.
+for doc in corpus:
+    tokens = tokenize(doc["text"])
+    for i in range(len(tokens) - 1):
+        bigrams_list.append((tokens[i], tokens[i + 1]))
+
+# Create a DataFrame from the list of bigram tuples,
+# where each bigram is represented as a single string with the two tokens separated by a space.
+bigram_df: pl.DataFrame = pl.DataFrame(
+    {"bigram": [f"{a} {b}" for a, b in bigrams_list]}
+)
+
+# Create a new DataFrame that groups the bigrams by their text
+# and counts how many times each bigram appears,
+# then sorts the results by frequency in descending order.
+bigram_freq_df: pl.DataFrame = (
+    bigram_df.group_by("bigram").len().sort("len", descending=True)
+)
+
+# Show results
+print("Top bigrams:")
+print(bigram_freq_df.head(10))
+
+
+# ============================================================
+# Section 9. Visualize Token Frequencies
+# ============================================================
+
+print("IMPORTANT: Close chart window to continue execution.")
+
+# Define a new DataFrame that filters the category frequency DataFrame
+# to get the top 5 tokens for the "books" category.
+dog_df = category_freq_df.filter(pl.col("category") == "books").head(5)
+
+# Create a figure that is 8 inches wide and 4 inches tall
+plt.figure(figsize=(8, 4))
+
+# Add a bar chart to the figure using the tokens as the x-axis and their frequencies as the y-axis.
+plt.bar(dog_df["token"], dog_df["len"])
+
+# Define the x-axis tick parameters to rotate the labels by 45 degrees for better readability.
+# The gca() function gets the current axes of the plot, and tick_params() is used to set the rotation of the x-axis labels.
+ax = plt.gca()
+ax.tick_params(axis="x", labelrotation=45)
+
+# Set the title and labels for the axes of the plot.
+plt.title("Case Example: Top Tokens (Books Category)\n(Close this window to continue)")
+plt.xlabel("Token")
+plt.ylabel("Frequency")
+
+# Adjust the layout of the plot to prevent overlap and ensure everything fits well.
+plt.tight_layout()
+
+# Display the plot on the screen.
+# The execution of the script will pause until the plot window is closed.
+plt.show()
+
+# ============================================================
+# Section 9.5 New Mod: Compare Top Tokens Across Categories
+# ============================================================
+
+# Get top 3 tokens per category
+top_tokens_all = category_freq_df.group_by("category").head(3)
+
+print("Top tokens across all categories:")
+print(top_tokens_all)
+
+# Create a combined label for better plotting
+top_tokens_all = top_tokens_all.with_columns(
+    (pl.col("category") + ": " + pl.col("token")).alias("label")
+)
+
+# Plot
+plt.figure(figsize=(10, 5))
+plt.bar(top_tokens_all["label"], top_tokens_all["len"])
+
+ax = plt.gca()
+ax.tick_params(axis="x", labelrotation=45)
+
+plt.title("Top Tokens by Category (Comparison)")
+plt.xlabel("Category + Token")
+plt.ylabel("Frequency")
+plt.tight_layout()
+plt.show()
+
+
+# ============================================================
+# Section 10. Interpret Results and Identify Patterns
+# ============================================================
+
+print("\nFOSTER GENERAL OBSERVATIONS:")
+print("- Tokens cluster by category (books, library, reading).")
+print("- The 'books' category focuses on content like authors and readers.")
+print("- The 'library' category emphasizes spaces, resources, and services.")
+print("- The 'reading' category highlights learning and activities.")
+print("- Each category uses different vocabulary, showing clear topic separation.")
+
+print("\nFOSTER SPECIFIC OBSERVATIONS:")
+print(
+    "- The most frequent tokens in 'books' included words like 'books' and 'readers'."
+)
+print(
+    "- The 'library' category emphasized terms such as 'libraries', 'resources', and 'librarians'."
+)
+print(
+    "- The 'reading' category highlighted words like 'reading', 'students', and 'knowledge'."
+)
+print(
+    "- The comparison chart showed clear differences in vocabulary across categories."
+)
+
+
+# ============================================================
+# END
+# ============================================================
+
+LOG.info("========================")
+LOG.info("Pipeline executed successfully!")
+LOG.info("========================")
+LOG.info("END main()")
